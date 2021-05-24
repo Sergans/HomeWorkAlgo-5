@@ -63,6 +63,14 @@ namespace Task_5_1
     {
         static void Main(string[] args)
         {
+            int[] arr = { 8, 6, 10, 5, 7, 9, 11 };
+            TreeNode node = new TreeNode();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                node.AddItem(arr[i]);
+
+            }
+
            
         }
     }

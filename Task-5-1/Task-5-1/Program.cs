@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task_5_1
 {
@@ -70,8 +71,58 @@ namespace Task_5_1
                 node.AddItem(arr[i]);
 
             }
+            var queue = new Queue<TreeNode>();
+            var root = node.Root;
+            queue.Enqueue(root);
 
-           
+
+            while (queue.Count != 0)
+            {
+
+                if (queue.Peek().Value == 11)
+                {
+                    Console.WriteLine("Найдено");
+
+                    break;
+                }
+                else
+                {
+                    if (queue.Peek().LefttChild != null)
+                    {
+                        queue.Enqueue(queue.Peek().LefttChild);
+                    }
+                    if (queue.Peek().RightChild != null)
+                    {
+                        queue.Enqueue(queue.Peek().RightChild);
+                    }
+
+
+                    queue.Dequeue();
+
+                    Console.WriteLine("НЕНайдено");
+
+
+                }
+
+            }
+
+
+            //var qItemOne = queue.Dequeue();
+            //var qItemTwo = queue.Dequeue();
+            //Console.WriteLine($"{qItemOne},  {qItemTwo} ");
+
+            //var stack = new Stack<int>();
+            //stack.Push(1);
+            //stack.Push(2);
+            //stack.Push(3);
+            //stack.Push(4);
+            //stack.Push(5);
+            //while (stack.Count > 0)
+            //{
+            //    var sItemOne = stack.Pop();
+            //    Console.WriteLine($"{sItemOne} ");
+
+
         }
     }
 }

@@ -73,6 +73,7 @@ namespace Task_5_1
 
                 if (queue.Peek().Value == value)
                 {
+
                     Console.WriteLine("Найдено");
 
                     break;
@@ -99,16 +100,46 @@ namespace Task_5_1
             }
 
         }
+        public static void DFS(TreeNode node, int value)
+        {
+            var stack = new Stack<TreeNode>();
+            var root = node.Root;
+            stack.Push(root);
+            while (stack.Count != 0)
+            {
+                if (stack.Peek().Value == value)
+                {
+
+                    Console.WriteLine("Найдено");
+
+                    break;
+                }
+                else
+                {
+                    if (stack.Peek().LefttChild != null)
+                    {
+                        stack.Push(stack.Peek().LefttChild);
+                    }
+                    stack.Pop();
+                    Console.WriteLine($"Не найдено");
+                }
+
+                        
+
+            }
+
+        }
         static void Main(string[] args)
         {
-            int[] arr = { 8, 6, 10, 5, 7, 9, 11 };
+            int[] arr = { 8, 6, 10, 7,5, 9, 11 };
             TreeNode node = new TreeNode();
             for (int i = 0; i < arr.Length; i++)
             {
                 node.AddItem(arr[i]);
 
             }
-            BFS(node,11);
+            //BFS(node,11);
+            DFS(node, 6);
             
 
 

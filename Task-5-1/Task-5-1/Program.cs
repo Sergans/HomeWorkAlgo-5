@@ -62,24 +62,16 @@ namespace Task_5_1
     }
         class Program
     {
-        static void Main(string[] args)
+        public static void BFS(TreeNode node,int value)
         {
-            int[] arr = { 8, 6, 10, 5, 7, 9, 11 };
-            TreeNode node = new TreeNode();
-            for (int i = 0; i < arr.Length; i++)
-            {
-                node.AddItem(arr[i]);
-
-            }
             var queue = new Queue<TreeNode>();
             var root = node.Root;
             queue.Enqueue(root);
-
-
             while (queue.Count != 0)
             {
 
-                if (queue.Peek().Value == 11)
+
+                if (queue.Peek().Value == value)
                 {
                     Console.WriteLine("Найдено");
 
@@ -99,12 +91,25 @@ namespace Task_5_1
 
                     queue.Dequeue();
 
-                    Console.WriteLine("НЕНайдено");
+                    Console.WriteLine($"Не найдено");
 
 
                 }
 
             }
+
+        }
+        static void Main(string[] args)
+        {
+            int[] arr = { 8, 6, 10, 5, 7, 9, 11 };
+            TreeNode node = new TreeNode();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                node.AddItem(arr[i]);
+
+            }
+            BFS(node,11);
+            
 
 
             //var qItemOne = queue.Dequeue();

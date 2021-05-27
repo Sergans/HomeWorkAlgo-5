@@ -119,7 +119,7 @@ namespace Task_5_1
                     if (stack.Peek().LefttChild != null)
                     {
                         stack.Push(stack.Peek().LefttChild);
-                        
+                         
                     }
                     else
                     {
@@ -129,13 +129,20 @@ namespace Task_5_1
                         }
                         else
                         {
+                            if(stack.Peek().LefttChild == null)
+                            {
+                                stack.Peek().Parent.LefttChild = null;
+                                stack.Pop();
+                                stack.Push(stack.Pop().RightChild);
+                            }
                             
-                            stack.Pop();
+                            
+
 
                         }
-                        
+
                     }
-                    
+
                     //Console.WriteLine($"Не найдено");
                 }
 
@@ -154,7 +161,7 @@ namespace Task_5_1
 
             }
             //BFS(node,11);
-            DFS(node, 7);
+            DFS(node, 11);
             
 
 

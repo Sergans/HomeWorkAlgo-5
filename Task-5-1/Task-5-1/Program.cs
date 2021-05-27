@@ -161,8 +161,8 @@ namespace Task_5_1
 
             }
             //BFS(node,11);
-            DFS(node, 11);
-            
+            DFS(node, 10);
+            BFS(node, 11);
 
 
             //var qItemOne = queue.Dequeue();

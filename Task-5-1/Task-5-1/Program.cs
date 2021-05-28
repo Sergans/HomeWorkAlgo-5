@@ -143,7 +143,7 @@ namespace Task_5_1
 
                     }
 
-                    //Console.WriteLine($"Не найдено");
+                    Console.WriteLine($"Не найдено");
                 }
 
                         
@@ -160,9 +160,11 @@ namespace Task_5_1
                 node.AddItem(arr[i]);
 
             }
-            //BFS(node,11);
+            
+            
+            BFS(node, 10);
+            Console.WriteLine();
             DFS(node, 10);
-            BFS(node, 11);
 
 
             //var qItemOne = queue.Dequeue();

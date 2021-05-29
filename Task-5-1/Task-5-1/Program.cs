@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 namespace Task_5_1
 {
+    public class TestCase
+    {
+       
+       public int[] stepbfs { get; set; }
+       public int[] stepdfs { get; set; }
+        
+    }
+
     public class TreeNode
     {
         public int Value { get; set; }
@@ -62,14 +70,15 @@ namespace Task_5_1
     }
         class Program
     {
-        public static void BFS(TreeNode node,int value)
+        public static List<int> BFS(TreeNode node,int value)
         {
-            
+            List<int> bfs = new List<int>();//для теста
             int step = 0;
             var queue = new Queue<TreeNode>();
             var root = node.Root;
             var a = root;
             queue.Enqueue(root);
+            
             while (queue.Count != 0)
             {
                 step++;
@@ -78,8 +87,10 @@ namespace Task_5_1
                 {
 
                     Console.WriteLine($"Шаг {step}. узел значение-{queue.Peek().Value}. Найдено {value}");
-
+                    a = queue.Peek();
+                    
                     break;
+
                 }
                 else
                 {
@@ -96,15 +107,16 @@ namespace Task_5_1
                     a=queue.Dequeue();
 
                     Console.WriteLine($"Шаг {step}. узел значение-{a.Value}. не найдено");
-
+                    bfs.Add(a.Value);
 
                 }
 
             }
-
+            return bfs;
         }
-        public static void DFS(TreeNode node, int value)
+        public static List<int> DFS(TreeNode node, int value)
         {
+            List<int> dfs = new List<int>();//для теста
             int step = 0;
             var stack = new Stack<TreeNode>();
             var root = node.Root;
@@ -117,7 +129,7 @@ namespace Task_5_1
                 {
 
                     Console.WriteLine($"Шаг {step}. узел значение-{stack.Peek().Value}. Найдено {value}");
-
+                    
                     break;
                 }
                 else
@@ -154,8 +166,57 @@ namespace Task_5_1
                     }
 
                     Console.WriteLine($"Шаг {step}. узел значение-{a.Value}. не найдено");
+                    dfs.Add(a.Value);
                 }
 
+            }
+            return dfs;
+        }
+        public static void TestStep(int[]arr,TestCase testCase)
+        {
+            int search = 0;
+            bool y = true;
+            bool n = true;
+            
+            TreeNode node = new TreeNode();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                node.AddItem(arr[i]);
+
+            }
+            var bfs = BFS(node, search);
+            var dfs = DFS(node, search);
+            Console.Clear();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (testCase.stepbfs[i] == bfs[i])
+                {
+                    y = true;
+                }
+                else
+                {
+                    n = false;
+
+                }
+                if (testCase.stepdfs[i] == dfs[i])
+                {
+                    y = true;
+                }
+                else
+                {
+                    n = false;
+
+                }
+
+            }
+            if (y==n)
+            {
+                Console.WriteLine("VALID TEST");
+            }
+            else
+            {
+                Console.WriteLine("INVALID TEST");
             }
 
         }
@@ -163,32 +224,19 @@ namespace Task_5_1
         {
             int[] arr = { 8, 6, 10, 7,5, 9, 11 };
             TreeNode node = new TreeNode();
+
+            TestCase testCase = new TestCase();
+            testCase.stepbfs = new[] { 8, 6, 10, 5, 7, 9, 11 };//тестовая последовательность BFS
+            testCase.stepdfs = new[] { 8, 6, 5, 7, 10, 9, 11 };//тестовая последовательность DFS
+            TestStep(arr, testCase);
             for (int i = 0; i < arr.Length; i++)
             {
                 node.AddItem(arr[i]);
 
             }
-            
-            
             BFS(node, 11);
             Console.WriteLine();
             DFS(node, 11);
-
-
-            //var qItemOne = queue.Dequeue();
-            //var qItemTwo = queue.Dequeue();
-            //Console.WriteLine($"{qItemOne},  {qItemTwo} ");
-
-            //var stack = new Stack<int>();
-            //stack.Push(1);
-            //stack.Push(2);
-            //stack.Push(3);
-            //stack.Push(4);
-            //stack.Push(5);
-            //while (stack.Count > 0)
-            //{
-            //    var sItemOne = stack.Pop();
-            //    Console.WriteLine($"{sItemOne} ");
 
 
         }

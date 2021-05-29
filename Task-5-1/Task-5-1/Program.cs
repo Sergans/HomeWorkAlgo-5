@@ -64,17 +64,20 @@ namespace Task_5_1
     {
         public static void BFS(TreeNode node,int value)
         {
+            
+            int step = 0;
             var queue = new Queue<TreeNode>();
             var root = node.Root;
+            var a = root;
             queue.Enqueue(root);
             while (queue.Count != 0)
             {
-
+                step++;
 
                 if (queue.Peek().Value == value)
                 {
 
-                    Console.WriteLine("Найдено");
+                    Console.WriteLine($"Шаг {step}. узел значение-{queue.Peek().Value}. Найдено {value}");
 
                     break;
                 }
@@ -90,9 +93,9 @@ namespace Task_5_1
                     }
 
 
-                    queue.Dequeue();
+                    a=queue.Dequeue();
 
-                    Console.WriteLine($"Не найдено");
+                    Console.WriteLine($"Шаг {step}. узел значение-{a.Value}. не найдено");
 
 
                 }
@@ -102,15 +105,18 @@ namespace Task_5_1
         }
         public static void DFS(TreeNode node, int value)
         {
+            int step = 0;
             var stack = new Stack<TreeNode>();
             var root = node.Root;
             stack.Push(root);
+            var a=root;
             while (stack.Count != 0)
             {
+                step++;
                 if (stack.Peek().Value == value)
                 {
 
-                    Console.WriteLine("Найдено");
+                    Console.WriteLine($"Шаг {step}. узел значение-{stack.Peek().Value}. Найдено {value}");
 
                     break;
                 }
@@ -118,39 +124,37 @@ namespace Task_5_1
                 {
                     if (stack.Peek().LefttChild != null)
                     {
+                        a = stack.Peek();
                         stack.Push(stack.Peek().LefttChild);
-                         
+                       
                     }
                     else
                     {
                         if (stack.Peek().RightChild != null)
                         {
+                            a = stack.Peek();
                             stack.Push(stack.Peek().RightChild);
+                            
                         }
                         else
                         {
                             if(stack.Peek().LefttChild == null)
                             {
                                 stack.Peek().Parent.LefttChild = null;
-                                stack.Pop();
+                               a= stack.Pop();
                                 if (stack.Count != 0)
                                 {
                                     stack.Push(stack.Pop().RightChild);
                                 }
                                 
                             }
-                            
-                            
-
-
+                         
                         }
 
                     }
 
-                    Console.WriteLine($"Не найдено");
+                    Console.WriteLine($"Шаг {step}. узел значение-{a.Value}. не найдено");
                 }
-
-                        
 
             }
 
@@ -166,9 +170,9 @@ namespace Task_5_1
             }
             
             
-            BFS(node, 4);
+            BFS(node, 11);
             Console.WriteLine();
-            DFS(node, 4);
+            DFS(node, 11);
 
 
             //var qItemOne = queue.Dequeue();

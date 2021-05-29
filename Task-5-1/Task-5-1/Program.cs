@@ -133,7 +133,11 @@ namespace Task_5_1
                             {
                                 stack.Peek().Parent.LefttChild = null;
                                 stack.Pop();
-                                stack.Push(stack.Pop().RightChild);
+                                if (stack.Count != 0)
+                                {
+                                    stack.Push(stack.Pop().RightChild);
+                                }
+                                
                             }
                             
                             
@@ -162,9 +166,9 @@ namespace Task_5_1
             }
             
             
-            BFS(node, 10);
+            BFS(node, 4);
             Console.WriteLine();
-            DFS(node, 10);
+            DFS(node, 4);
 
 
             //var qItemOne = queue.Dequeue();
